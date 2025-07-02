@@ -170,7 +170,7 @@ export default function LoanApplicationForm() {
 
   return (
     <div className="min-h-screen bg-white p-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full mx-auto">
         {/* Header */}
         <div className="text-center mb-8 border-2 border-black p-4">
           <h1 className="text-xl font-bold mb-2">LOAN APPLICATION FORM</h1>
