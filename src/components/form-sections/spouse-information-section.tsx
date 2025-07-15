@@ -79,11 +79,11 @@ export function SpouseInformationSection({ control }: SpouseInformationSectionPr
                         <Button
                           variant="outline"
                           className={cn(
-                            "w-full pl-3 text-left font-normal border-b-2 border-t-0 border-l-0 border-r-0 rounded-none",
+                            "w-full justify-start text-left font-normal border-b-2 border-t-0 border-l-0 border-r-0 rounded-none bg-transparent hover:bg-gray-50",
                             !field.value && "text-muted-foreground",
                           )}
                         >
-                          {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                          {field.value ? format(field.value, "MM/dd/yyyy") : <span>Select date</span>}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
                       </FormControl>

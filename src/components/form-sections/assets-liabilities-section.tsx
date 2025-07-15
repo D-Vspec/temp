@@ -1,11 +1,12 @@
 "use client"
 
-import { type Control, useFieldArray } from "react-hook-form"
+import type { Control } from "react-hook-form"
+import { useFieldArray } from "react-hook-form"
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
-import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Plus, Trash2 } from "lucide-react"
-import { Textarea } from "@/components/ui/textarea"
 
 interface AssetsLiabilitiesSectionProps {
   control: Control<any>
@@ -66,16 +67,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                   <FormItem>
                     <FormLabel>LOCATION / LOT AREA</FormLabel>
                     <FormControl>
-                      <Textarea
-                        {...field}
-                        className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                        rows={1}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement
-                          target.style.height = "auto"
-                          target.style.height = target.scrollHeight + "px"
-                        }}
-                      />
+                      <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -88,16 +80,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                   <FormItem>
                     <FormLabel>EST. MARKET VALUE:</FormLabel>
                     <FormControl>
-                      <Textarea
-                        {...field}
-                        className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                        rows={1}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement
-                          target.style.height = "auto"
-                          target.style.height = target.scrollHeight + "px"
-                        }}
-                      />
+                      <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -117,16 +100,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                   <FormItem>
                     <FormLabel>YEAR / MAKE / MODEL</FormLabel>
                     <FormControl>
-                      <Textarea
-                        {...field}
-                        className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                        rows={1}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement
-                          target.style.height = "auto"
-                          target.style.height = target.scrollHeight + "px"
-                        }}
-                      />
+                      <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -139,16 +113,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                   <FormItem>
                     <FormLabel>EST. MARKET VALUE:</FormLabel>
                     <FormControl>
-                      <Textarea
-                        {...field}
-                        className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                        rows={1}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement
-                          target.style.height = "auto"
-                          target.style.height = target.scrollHeight + "px"
-                        }}
-                      />
+                      <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -174,16 +139,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Textarea
-                            {...field}
-                            className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                            rows={1}
-                            onInput={(e) => {
-                              const target = e.target as HTMLTextAreaElement
-                              target.style.height = "auto"
-                              target.style.height = target.scrollHeight + "px"
-                            }}
-                          />
+                          <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -195,16 +151,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Textarea
-                            {...field}
-                            className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                            rows={1}
-                            onInput={(e) => {
-                              const target = e.target as HTMLTextAreaElement
-                              target.style.height = "auto"
-                              target.style.height = target.scrollHeight + "px"
-                            }}
-                          />
+                          <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -217,16 +164,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                       render={({ field }) => (
                         <FormItem className="flex-1">
                           <FormControl>
-                            <Textarea
-                              {...field}
-                              className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                              rows={1}
-                              onInput={(e) => {
-                                const target = e.target as HTMLTextAreaElement
-                                target.style.height = "auto"
-                                target.style.height = target.scrollHeight + "px"
-                              }}
-                            />
+                            <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -272,16 +210,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Textarea
-                            {...field}
-                            className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                            rows={1}
-                            onInput={(e) => {
-                              const target = e.target as HTMLTextAreaElement
-                              target.style.height = "auto"
-                              target.style.height = target.scrollHeight + "px"
-                            }}
-                          />
+                          <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -294,16 +223,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                       render={({ field }) => (
                         <FormItem className="flex-1">
                           <FormControl>
-                            <Textarea
-                              {...field}
-                              className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                              rows={1}
-                              onInput={(e) => {
-                                const target = e.target as HTMLTextAreaElement
-                                target.style.height = "auto"
-                                target.style.height = target.scrollHeight + "px"
-                              }}
-                            />
+                            <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -349,16 +269,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Textarea
-                            {...field}
-                            className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                            rows={1}
-                            onInput={(e) => {
-                              const target = e.target as HTMLTextAreaElement
-                              target.style.height = "auto"
-                              target.style.height = target.scrollHeight + "px"
-                            }}
-                          />
+                          <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -371,16 +282,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                       render={({ field }) => (
                         <FormItem className="flex-1">
                           <FormControl>
-                            <Textarea
-                              {...field}
-                              className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                              rows={1}
-                              onInput={(e) => {
-                                const target = e.target as HTMLTextAreaElement
-                                target.style.height = "auto"
-                                target.style.height = target.scrollHeight + "px"
-                              }}
-                            />
+                            <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -426,16 +328,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Textarea
-                            {...field}
-                            className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                            rows={1}
-                            onInput={(e) => {
-                              const target = e.target as HTMLTextAreaElement
-                              target.style.height = "auto"
-                              target.style.height = target.scrollHeight + "px"
-                            }}
-                          />
+                          <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -448,16 +341,7 @@ export function AssetsLiabilitiesSection({ control }: AssetsLiabilitiesSectionPr
                       render={({ field }) => (
                         <FormItem className="flex-1">
                           <FormControl>
-                            <Textarea
-                              {...field}
-                              className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none resize-none min-h-[40px]"
-                              rows={1}
-                              onInput={(e) => {
-                                const target = e.target as HTMLTextAreaElement
-                                target.style.height = "auto"
-                                target.style.height = target.scrollHeight + "px"
-                              }}
-                            />
+                            <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

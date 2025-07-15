@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
-import { CalendarIcon } from 'lucide-react'
+import { CalendarIcon } from "lucide-react"
 
 interface BorrowerInformationSectionProps {
   control: Control<any>

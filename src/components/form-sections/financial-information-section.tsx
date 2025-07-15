@@ -313,15 +313,13 @@ export function FinancialInformationSection({ control }: FinancialInformationSec
                 </div>
               </div>
 
-              {/* Total Row - Fixed alignment */}
+              {/* Total Row */}
               <div className="grid grid-cols-3 gap-4 items-center font-bold border-t-2 pt-4">
-                  <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-gray-50 text-sm font-medium">
+                <div className="text-center">Total</div>
+                <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-blue-100 text-blue-800 font-bold">
                   {formatCurrency(borrowerTotal)}
                 </div>
-                  <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-gray-50 text-sm font-medium">
-                  {formatCurrency(spouseTotal)}
-                </div>
-                  <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-gray-50 text-sm font-medium">
+                <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-green-100 text-green-800 font-bold">
                   {formatCurrency(grandTotal)}
                 </div>
               </div>
@@ -436,7 +434,7 @@ export function FinancialInformationSection({ control }: FinancialInformationSec
               />
               <div className="font-bold border-t-2 pt-4">
                 <div className="mb-2">Total Expenses</div>
-                  <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-gray-50 text-sm font-medium">
+                <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-red-100 text-red-800 font-bold">
                   {formatCurrency(totalExpenses)}
                 </div>
               </div>
@@ -444,7 +442,7 @@ export function FinancialInformationSection({ control }: FinancialInformationSec
               {/* Net Income Calculation */}
               <div className="font-bold border-t-2 pt-4">
                 <div className="mb-2">Net Monthly Income</div>
-                  <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-gray-50 text-sm font-medium">
+                <div className="border-b-2 border-t-0 border-l-0 border-r-0 h-10 flex items-center px-3 bg-yellow-100 text-yellow-800 font-bold">
                   {formatCurrency(grandTotal - totalExpenses)}
                 </div>
               </div>

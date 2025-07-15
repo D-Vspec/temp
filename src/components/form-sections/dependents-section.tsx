@@ -1,10 +1,11 @@
 "use client"
 
-import { type Control, useFieldArray } from "react-hook-form"
+import type { Control } from "react-hook-form"
+import { useFieldArray } from "react-hook-form"
 import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Plus, Trash2 } from "lucide-react"
 
 interface DependentsSectionProps {
@@ -111,4 +112,3 @@ export function DependentsSection({ control }: DependentsSectionProps) {
     </Card>
   )
 }
-

@@ -121,27 +121,49 @@ export function BusinessHouseholdSection({ control }: BusinessHouseholdSectionPr
       : ""
   }
 
-  // Clear other fields when one is entered
-  const handleFieldChange = (
-    fieldName: string,
-    index: number,
-    frequency: string,
-    value: string
-  ) => {
-    const currentData = control._formValues[fieldName]?.[index] || {}
+  // Check if any frequency field has a value for a specific item
+  const hasAnyFrequencyValue = (fieldName: string, index: number): string | null => {
+    const watchedData = useWatch({ control, name: `${fieldName}.${index}` })
+    if (!watchedData) return null
     
-    // Clear other frequency fields
-    const clearedData = {
-      ...currentData,
+    const frequencies = ['daily', 'weekly', 'semiMonthly', 'monthly']
+    for (const freq of frequencies) {
+      if (watchedData[freq] && watchedData[freq].trim() !== '') {
+        return freq
+      }
+    }
+    return null
+  }
+
+  // Check if a specific frequency field should be disabled
+  const isFrequencyDisabled = (fieldName: string, index: number, currentFreq: string): boolean => {
+    const activeFreq = hasAnyFrequencyValue(fieldName, index)
+    return activeFreq !== null && activeFreq !== currentFreq
+  }
+
+  // Handle field changes with proper clearing
+  const handleFrequencyChange = (fieldName: string, index: number, frequency: string, value: string) => {
+    const currentItem = control._formValues[fieldName]?.[index] || {}
+    
+    // If clearing the current value, don't clear other fields
+    if (value.trim() === '') {
+      return
+    }
+    
+    // Clear other frequency fields when a new value is entered
+    const updatedItem = {
+      ...currentItem,
       daily: frequency === 'daily' ? value : '',
       weekly: frequency === 'weekly' ? value : '',
       semiMonthly: frequency === 'semiMonthly' ? value : '',
       monthly: frequency === 'monthly' ? value : ''
     }
     
-    // Update the form
-    control._formValues[fieldName] = control._formValues[fieldName] || []
-    control._formValues[fieldName][index] = clearedData
+    // Update the form values
+    if (!control._formValues[fieldName]) {
+      control._formValues[fieldName] = []
+    }
+    control._formValues[fieldName][index] = updatedItem
   }
 
   // Render individual income/expense row
@@ -183,11 +205,14 @@ export function BusinessHouseholdSection({ control }: BusinessHouseholdSectionPr
             <FormControl>
               <Input
                 {...field}
+                disabled={isFrequencyDisabled(fieldName, index, 'daily')}
                 onChange={(e) => {
                   field.onChange(e)
-                  handleFieldChange(fieldName, index, 'daily', e.target.value)
+                  handleFrequencyChange(fieldName, index, 'daily', e.target.value)
                 }}
-                className="border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm"
+                className={`border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm ${
+                  isFrequencyDisabled(fieldName, index, 'daily') ? 'bg-gray-100 cursor-not-allowed' : ''
+                }`}
               />
             </FormControl>
             <FormMessage />
@@ -202,11 +227,14 @@ export function BusinessHouseholdSection({ control }: BusinessHouseholdSectionPr
             <FormControl>
               <Input
                 {...field}
+                disabled={isFrequencyDisabled(fieldName, index, 'weekly')}
                 onChange={(e) => {
                   field.onChange(e)
-                  handleFieldChange(fieldName, index, 'weekly', e.target.value)
+                  handleFrequencyChange(fieldName, index, 'weekly', e.target.value)
                 }}
-                className="border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm"
+                className={`border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm ${
+                  isFrequencyDisabled(fieldName, index, 'weekly') ? 'bg-gray-100 cursor-not-allowed' : ''
+                }`}
               />
             </FormControl>
             <FormMessage />
@@ -221,11 +249,14 @@ export function BusinessHouseholdSection({ control }: BusinessHouseholdSectionPr
             <FormControl>
               <Input
                 {...field}
+                disabled={isFrequencyDisabled(fieldName, index, 'semiMonthly')}
                 onChange={(e) => {
                   field.onChange(e)
-                  handleFieldChange(fieldName, index, 'semiMonthly', e.target.value)
+                  handleFrequencyChange(fieldName, index, 'semiMonthly', e.target.value)
                 }}
-                className="border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm"
+                className={`border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm ${
+                  isFrequencyDisabled(fieldName, index, 'semiMonthly') ? 'bg-gray-100 cursor-not-allowed' : ''
+                }`}
               />
             </FormControl>
             <FormMessage />
@@ -240,11 +271,14 @@ export function BusinessHouseholdSection({ control }: BusinessHouseholdSectionPr
             <FormControl>
               <Input
                 {...field}
+                disabled={isFrequencyDisabled(fieldName, index, 'monthly')}
                 onChange={(e) => {
                   field.onChange(e)
-                  handleFieldChange(fieldName, index, 'monthly', e.target.value)
+                  handleFrequencyChange(fieldName, index, 'monthly', e.target.value)
                 }}
-                className="border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm"
+                className={`border-b border-gray-300 border-t-0 border-l-0 border-r-0 rounded-none text-sm ${
+                  isFrequencyDisabled(fieldName, index, 'monthly') ? 'bg-gray-100 cursor-not-allowed' : ''
+                }`}
               />
             </FormControl>
             <FormMessage />

@@ -11,20 +11,47 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { CalendarIcon, Plus, Trash2 } from "lucide-react"
+import { useEffect } from "react"
 
 interface BeneficiariesSectionProps {
   control: Control<any>
+  clientData?: any
 }
 
-export function BeneficiariesSection({ control }: BeneficiariesSectionProps) {
+export function BeneficiariesSection({ control, clientData }: BeneficiariesSectionProps) {
   const {
     fields: beneficiaryFields,
     append: appendBeneficiary,
     remove: removeBeneficiary,
+    replace: replaceBeneficiaries,
   } = useFieldArray({
     control,
     name: "beneficiaries",
   })
+
+  // Helper function to safely parse dates
+  const parseDate = (dateString: string | null | undefined) => {
+    if (!dateString) return undefined
+    try {
+      const date = new Date(dateString)
+      return isNaN(date.getTime()) ? undefined : date
+    } catch {
+      return undefined
+    }
+  }
+
+  // Populate beneficiaries when clientData is provided
+  useEffect(() => {
+    if (clientData?.data?.beneficiaries && Array.isArray(clientData.data.beneficiaries)) {
+      const beneficiaries = clientData.data.beneficiaries.map((b: any) => ({
+        name: b.name || "",
+        birthDate: parseDate(b.birthDate),
+        age: b.age || "",
+        relationship: b.relationship || "",
+      }))
+      replaceBeneficiaries(beneficiaries)
+    }
+  }, [clientData, replaceBeneficiaries])
 
   return (
     <Card className="border-2 border-black">
