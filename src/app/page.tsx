@@ -24,14 +24,14 @@ export default function HomePage() {
               <p className="text-gray-600 mb-4">
                 Submit a new loan application with complete borrower information and financial details.
               </p>
-              <Link href="/loan-application">
+              <Link href="/apply">
                 <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">New Loan Application</Button>
               </Link>
             </CardContent>
           </Card>
 
           {/* Client Information */}
-          <Card className="border-2 border-black hover:shadow-lg transition-shadow">
+          {/* <Card className="border-2 border-black hover:shadow-lg transition-shadow">
             <CardHeader className="bg-green-100">
               <CardTitle className="text-center font-bold text-green-800">CLIENT INFORMATION</CardTitle>
             </CardHeader>
@@ -43,7 +43,7 @@ export default function HomePage() {
                 <Button className="w-full bg-green-600 hover:bg-green-700 text-white">New Client Registration</Button>
               </Link>
             </CardContent>
-          </Card>
+          </Card> */}
 
           {/* View Clients */}
           <Card className="border-2 border-black hover:shadow-lg transition-shadow">

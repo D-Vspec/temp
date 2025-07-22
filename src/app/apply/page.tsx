@@ -14,6 +14,12 @@ import { CoInsuredSection } from "@/components/form-sections/co-insured-section"
 import { DataPrivacySection } from "@/components/form-sections/data-privacy-section"
 import { BusinessHouseholdSection } from "@/components/form-sections/business-household-section"
 
+import CapacitySection from "@/components/assessment/CapacitySection"
+import ResidencySection from "@/components/assessment/ResidencySection"
+import RecordSection from "@/components/assessment/RecordSection"
+import CenterStatusSection from "@/components/assessment/CenterStatusSection"
+import { AssessmentData, Client } from "@/types/client"
+
 const formSchema = z.object({
   // Personal Information
   salutation: z.string().min(1, "Salutation is required"),
@@ -121,6 +127,33 @@ const formSchema = z.object({
 
 export default function ClientInformationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+    const [assessmentData, setAssessmentData] = useState<AssessmentData>({
+      primaryLoanRepayment: "",
+      otherLoanRepayment: "",
+      cashFlowAnalysis: "",
+      forcedSavings: "",
+      lengthOfStay: "",
+      ownershipOfResidence: "",
+      barangayRecord: "",
+      familyStatus: "",
+      toiletStatus: "",
+      timeInProgram: "",
+      centerCollectionRecord: "",
+      paymentHistory: "",
+      numberOfLendingGroups: "",
+      numberOfCenterMembers: "",
+      attendanceToMeetings: "",
+      programBenefitsReceived: "",
+      yearsInProgram: "",
+      pastdueRatio: "",
+      remarks: "",
+      assessmentDate: new Date().toISOString().split('T')[0]
+    })
+
+
+  const handleAssessmentChange = (field: keyof AssessmentData, value: string) => {
+    setAssessmentData(prev => ({ ...prev, [field]: value }))
+  }
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -281,6 +314,10 @@ export default function ClientInformationForm() {
             <BeneficiariesSection control={form.control} />
             <CoInsuredSection control={form.control} />
             <BusinessHouseholdSection control={form.control} />
+            <CapacitySection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
+            <ResidencySection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
+            <RecordSection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
+            <CenterStatusSection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
             <DataPrivacySection control={form.control} />
 
             {/* Submit Button */}
