@@ -35,8 +35,6 @@ export function PersonalInformationSection({ control }: PersonalInformationSecti
     return maritalStatus && maritalStatus.toLowerCase() !== 'single'
   }
 
-
-
   // If we have form control, render the editable form
   if (control) {
     return (
@@ -315,6 +313,29 @@ export function PersonalInformationSection({ control }: PersonalInformationSecti
                 )}
               />
             </div>
+
+            {/* Type of Form Dropdown */}
+            <FormField
+              control={control}
+              name="typeOfForm"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="font-bold">TYPE OF FORM</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Balikatan 200">Balikatan 200</SelectItem>
+                      <SelectItem value="Balikatan 400">Balikatan 400</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             {/* Spouse Information Section - Conditionally rendered */}
             <FormField

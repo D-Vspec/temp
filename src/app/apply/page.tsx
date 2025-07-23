@@ -25,7 +25,7 @@ const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   middleName: z.string().optional(),
   gender: z.string().min(1, "Gender is required"),
-  birthDate: z.date({ required_error: "Birth date is required" }),
+  birthDate: z.preprocess((val) => val ? new Date(val as string) : undefined, z.date({ required_error: "Birth date is required" })),
   placeOfBirth: z.string().min(1, "Place of birth is required"),
   height: z.string().min(1, "Height is required"),
   contactNumber: z.string().min(1, "Contact number is required"),
@@ -35,7 +35,7 @@ const formSchema = z.object({
   weight: z.string().min(1, "Weight is required"),
   education: z.string().min(1, "Education is required"),
   spouseName: z.string().optional(),
-  spouseBirthDate: z.date().optional(),
+  spouseBirthDate: z.preprocess((val) => val ? new Date(val as string) : undefined, z.date().optional()),
   spouseWork: z.string().optional(),
   spouseMonthlyIncome: z.string().optional(),
 
@@ -51,9 +51,7 @@ const formSchema = z.object({
     .array(
       z.object({
         name: z.string().min(1, "Beneficiary name is required"),
-        birthDate: z.date({
-          required_error: "Beneficiary birth date is required",
-        }),
+        birthDate: z.preprocess((val) => val ? new Date(val as string) : undefined, z.date({ required_error: "Beneficiary birth date is required" })),
         age: z.string().min(1, "Beneficiary age is required"),
         relationship: z.string().min(1, "Beneficiary relationship is required"),
       }),
@@ -65,9 +63,7 @@ const formSchema = z.object({
     .array(
       z.object({
         name: z.string().min(1, "Co-insured name is required"),
-        birthDate: z.date({
-          required_error: "Co-insured birth date is required",
-        }),
+        birthDate: z.preprocess((val) => val ? new Date(val as string) : undefined, z.date({ required_error: "Co-insured birth date is required" })),
         age: z.string().min(1, "Co-insured age is required"),
         relationship: z.string().min(1, "Co-insured relationship is required"),
       }),
@@ -117,15 +113,16 @@ const formSchema = z.object({
       monthly: z.string().optional(),
     }),
   ),
-  estimatedDebtService: z.string().optional(),
-  repaymentCapacityRate: z.string().optional(),
-  maximumLoanEntitlement: z.string().optional(),
-  comments: z.string().optional(),
 
   // Assessment fields
-  primaryLoanRepayment: z.string().optional(),
-  otherLoanRepayment: z.string().optional(),
-  cashFlowAnalysis: z.string().optional(),
+  primaryLoanRepayment: z.array(z.union([
+    z.string(),
+    z.object({ value: z.literal("other"), comment: z.string().min(1, "Please specify 'Other'") })
+  ])).optional(),
+  otherLoanRepayment: z.array(z.union([
+    z.string(),
+    z.object({ value: z.literal("other"), comment: z.string().min(1, "Please specify 'Other'") })
+  ])).optional(),
   forcedSavings: z.string().optional(),
   lengthOfStay: z.string().optional(),
   ownershipOfResidence: z.string().optional(),
@@ -141,12 +138,17 @@ const formSchema = z.object({
   programBenefitsReceived: z.string().optional(),
   yearsInProgram: z.string().optional(),
   pastdueRatio: z.string().optional(),
+
+  // Type of Form
+  typeOfForm: z.string().min(1, "Type of form is required"),
 })
 
 export default function ClientInformationForm() {
+  console.log("ClientInformationForm rendered") // Debug: check if component renders
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  // Use 'any' as the generic to avoid type mismatch with Zod preprocess
+  const form = useForm<any>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       dataPrivacyConsent: false,
@@ -188,10 +190,14 @@ export default function ClientInformationForm() {
           monthly: "",
         },
       ],
+      typeOfForm: "", // Default value for typeOfForm
     },
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Log form data immediately on submit
+    console.log("=== FORM DATA ON SUBMIT ===")
+    console.log(JSON.stringify(values, null, 2))
     setIsSubmitting(true)
 
     try {
@@ -265,6 +271,7 @@ export default function ClientInformationForm() {
               monthly: "",
             },
           ],
+          typeOfForm: "", // Reset typeOfForm to default value
         })
       } else {
         throw new Error(`HTTP error! status: ${response.status}`)
@@ -295,7 +302,6 @@ export default function ClientInformationForm() {
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="w-full mx-auto">
-        {/* Header */}
         <div className="text-center mb-8 border-2 border-black p-4">
           <h1 className="text-xl font-bold mb-2">BAYANIHAN BANK</h1>
           <h2 className="text-lg font-semibold">111 QUEZON ST. ATIMONAN, QUEZON</h2>
