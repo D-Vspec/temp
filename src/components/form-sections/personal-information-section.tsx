@@ -14,11 +14,9 @@ import { CalendarIcon } from "lucide-react"
 
 interface PersonalInformationSectionProps {
   control?: Control<any>
-  data?: any
-  readOnly?: boolean
 }
 
-export function PersonalInformationSection({ control, data, readOnly = false }: PersonalInformationSectionProps) {
+export function PersonalInformationSection({ control }: PersonalInformationSectionProps) {
   const formatDate = (dateString: string) => {
     if (!dateString) return "N/A"
     try {
@@ -33,203 +31,11 @@ export function PersonalInformationSection({ control, data, readOnly = false }: 
     }
   }
 
-  // If readOnly is true or we only have data without control, render the static view
-  if (readOnly || (data && !control)) {
-    return (
-      <Card className="border-2 border-black max-w-6xl mx-auto">
-        <CardHeader className="bg-gray-100">
-          <CardTitle className="text-center font-bold text-lg">PERSONAL INFORMATION</CardTitle>
-        </CardHeader>
-        <CardContent className="p-6">
-          <div className="space-y-6">
-            {/* Salutation and Name Row */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <div>
-                <label className="font-bold text-sm block mb-2">SALUTATION</label>
-                <div className="flex space-x-4">
-                  <div className="flex items-center space-x-2">
-                    <input 
-                      type="radio" 
-                      checked={data?.salutation === "mr"} 
-                      readOnly 
-                      className="h-4 w-4"
-                    />
-                    <span className="text-sm">MR.</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <input 
-                      type="radio" 
-                      checked={data?.salutation === "ms"} 
-                      readOnly 
-                      className="h-4 w-4"
-                    />
-                    <span className="text-sm">MS.</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <input 
-                      type="radio" 
-                      checked={data?.salutation === "others"} 
-                      readOnly 
-                      className="h-4 w-4"
-                    />
-                    <span className="text-sm">OTHERS</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">LAST NAME:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.lastName || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">FIRST NAME:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.firstName || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">MIDDLE NAME:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.middleName || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">GENDER:</label>
-                <div className="flex space-x-4">
-                  <div className="flex items-center space-x-2">
-                    <input 
-                      type="radio" 
-                      checked={data?.gender === "male"} 
-                      readOnly 
-                      className="h-4 w-4"
-                    />
-                    <span className="text-sm">MALE</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <input 
-                      type="radio" 
-                      checked={data?.gender === "female"} 
-                      readOnly 
-                      className="h-4 w-4"
-                    />
-                    <span className="text-sm">FEMALE</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Second Row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div>
-                <label className="font-bold text-sm block mb-2">BIRTHDATE:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{formatDate(data?.birthDate)}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">PLACE OF BIRTH:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.placeOfBirth || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">HEIGHT:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.height ? `${data.height} cm` : "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">CONTACT #:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.contactNumber || "N/A"}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Third Row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div>
-                <label className="font-bold text-sm block mb-2">NO. OF DEPENDENTS:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.numberOfDependents || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">MARITAL STATUS:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.maritalStatus?.charAt(0).toUpperCase() + data?.maritalStatus?.slice(1) || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">NATIONALITY:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.nationality || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">WEIGHT:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.weight ? `${data.weight} kg` : "N/A"}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Fourth Row - Spouse Information */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div>
-                <label className="font-bold text-sm block mb-2">EDUCATION:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.education || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">SPOUSE NAME:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.spouseName || "N/A"}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">SPOUSE BIRTHDATE:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{formatDate(data?.spouseBirthDate)}</span>
-                </div>
-              </div>
-              
-              <div>
-                <label className="font-bold text-sm block mb-2">SPOUSE WORK:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.spouseWork || "N/A"}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Fifth Row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div>
-                <label className="font-bold text-sm block mb-2">SPOUSE MONTHLY INCOME:</label>
-                <div className="border-b-2 border-black pb-1">
-                  <span className="text-sm">{data?.spouseMonthlyIncome ? `₹${data.spouseMonthlyIncome}` : "N/A"}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    )
+  const shouldShowSpouseSection = (maritalStatus: string) => {
+    return maritalStatus && maritalStatus.toLowerCase() !== 'single'
   }
+
+
 
   // If we have form control, render the editable form
   if (control) {
@@ -493,8 +299,8 @@ export function PersonalInformationSection({ control, data, readOnly = false }: 
               />
             </div>
 
-            {/* Fourth Row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Fourth Row - Education */}
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               <FormField
                 control={control}
                 name="education"
@@ -508,85 +314,108 @@ export function PersonalInformationSection({ control, data, readOnly = false }: 
                   </FormItem>
                 )}
               />
-              <FormField
-                control={control}
-                name="spouseName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">SPOUSE NAME:</FormLabel>
-                    <FormControl>
-                      <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="spouseBirthDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">BIRTHDATE:</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant="outline"
-                            className={cn(
-                              "w-full justify-start text-left font-normal border-b-2 border-t-0 border-l-0 border-r-0 rounded-none bg-transparent hover:bg-gray-50",
-                              !field.value && "text-muted-foreground",
-                            )}
-                          >
-                            {field.value ? formatDate(field.value.toISOString()) : <span>Select date</span>}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={field.onChange}
-                          disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="spouseWork"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">WORK:</FormLabel>
-                    <FormControl>
-                      <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
             </div>
 
-            {/* Fifth Row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <FormField
-                control={control}
-                name="spouseMonthlyIncome"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">MONTHLY INCOME:</FormLabel>
-                    <FormControl>
-                      <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            {/* Spouse Information Section - Conditionally rendered */}
+            <FormField
+              control={control}
+              name="maritalStatus"
+              render={({ field }) => (
+                <>
+                  {shouldShowSpouseSection(field.value) && (
+                    <div className="border-t-4 border-gray-300 pt-6 mt-8">
+                      <h3 className="text-lg font-bold text-center mb-6 bg-gray-50 py-2 border-2 border-gray-300">
+                        SPOUSE INFORMATION
+                      </h3>
+                      
+                      <div className="space-y-6">
+                        {/* Spouse Details Row 1 */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <FormField
+                            control={control}
+                            name="spouseName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="font-bold">SPOUSE NAME:</FormLabel>
+                                <FormControl>
+                                  <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={control}
+                            name="spouseBirthDate"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="font-bold">SPOUSE BIRTHDATE:</FormLabel>
+                                <Popover>
+                                  <PopoverTrigger asChild>
+                                    <FormControl>
+                                      <Button
+                                        variant="outline"
+                                        className={cn(
+                                          "w-full justify-start text-left font-normal border-b-2 border-t-0 border-l-0 border-r-0 rounded-none bg-transparent hover:bg-gray-50",
+                                          !field.value && "text-muted-foreground",
+                                        )}
+                                      >
+                                        {field.value ? formatDate(field.value.toISOString()) : <span>Select date</span>}
+                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                      </Button>
+                                    </FormControl>
+                                  </PopoverTrigger>
+                                  <PopoverContent className="w-auto p-0" align="start">
+                                    <Calendar
+                                      mode="single"
+                                      selected={field.value}
+                                      onSelect={field.onChange}
+                                      disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+                                      initialFocus
+                                    />
+                                  </PopoverContent>
+                                </Popover>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={control}
+                            name="spouseWork"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="font-bold">SPOUSE WORK:</FormLabel>
+                                <FormControl>
+                                  <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        {/* Spouse Details Row 2 */}
+                        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+                          <FormField
+                            control={control}
+                            name="spouseMonthlyIncome"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="font-bold">SPOUSE MONTHLY INCOME:</FormLabel>
+                                <FormControl>
+                                  <Input {...field} className="border-b-2 border-t-0 border-l-0 border-r-0 rounded-none" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            />
           </div>
         </CardContent>
       </Card>
