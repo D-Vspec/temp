@@ -1,11 +1,10 @@
 import { RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { AssessmentData } from "@/types/client"
 
 interface ScoreOptionProps {
   value: string
   label: string
-  field: keyof AssessmentData
+  field: string
 }
 
 export default function ScoreOption({ value, label, field }: ScoreOptionProps) {

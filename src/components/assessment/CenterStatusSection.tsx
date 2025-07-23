@@ -1,80 +1,239 @@
-import { RadioGroup } from "@/components/ui/radio-group"
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import FormSection from "./FormSection"
-import ScoreOption from "./ScoreOption"
-import { AssessmentData } from "@/types/client"
+import { Control } from "react-hook-form"
 
 interface CenterStatusSectionProps {
-  assessmentData: AssessmentData
-  onAssessmentChange: (field: keyof AssessmentData, value: string) => void
+  control: Control<any>
 }
 
-export default function CenterStatusSection({ assessmentData, onAssessmentChange }: CenterStatusSectionProps) {
+export default function CenterStatusSection({ control }: CenterStatusSectionProps) {
   return (
     <FormSection title="CENTER STATUS ASSESSMENT" bgColor="bg-purple-50">
       <div className="space-y-6">
-        <div>
-          <Label className="text-sm font-semibold text-gray-700 mb-3 block">Number of Center Members</Label>
-          <RadioGroup value={assessmentData.numberOfCenterMembers} onValueChange={(value) => onAssessmentChange('numberOfCenterMembers', value)}>
-            <div className="space-y-2">
-              <ScoreOption value="1" label="5 to 10 members" field="numberOfCenterMembers" />
-              <ScoreOption value="2" label="11 to 15 members" field="numberOfCenterMembers" />
-              <ScoreOption value="3" label="26 or more members" field="numberOfCenterMembers" />
-              <ScoreOption value="4" label="16 to 20 members" field="numberOfCenterMembers" />
-              <ScoreOption value="5" label="21 to 25 members" field="numberOfCenterMembers" />
-            </div>
-          </RadioGroup>
-        </div>
+        <FormField
+          control={control}
+          name="numberOfCenterMembers"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-semibold text-gray-700 mb-3 block">Number of Center Members</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} value={field.value}>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="1" id="numberOfCenterMembers-1" />
+                      <Label htmlFor="numberOfCenterMembers-1" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">1</span> - 5 to 10 members
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="2" id="numberOfCenterMembers-2" />
+                      <Label htmlFor="numberOfCenterMembers-2" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">2</span> - 11 to 15 members
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="3" id="numberOfCenterMembers-3" />
+                      <Label htmlFor="numberOfCenterMembers-3" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">3</span> - 26 or more members
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="4" id="numberOfCenterMembers-4" />
+                      <Label htmlFor="numberOfCenterMembers-4" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">4</span> - 16 to 20 members
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="5" id="numberOfCenterMembers-5" />
+                      <Label htmlFor="numberOfCenterMembers-5" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">5</span> - 21 to 25 members
+                      </Label>
+                    </div>
+                  </div>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-        <div>
-          <Label className="text-sm font-semibold text-gray-700 mb-3 block">Attendance to Monthly/Quarterly Meetings (past 6 months)</Label>
-          <RadioGroup value={assessmentData.attendanceToMeetings} onValueChange={(value) => onAssessmentChange('attendanceToMeetings', value)}>
-            <div className="space-y-2">
-              <ScoreOption value="1" label="Attended once in 6 months" field="attendanceToMeetings" />
-              <ScoreOption value="2" label="Attended twice in 6 months" field="attendanceToMeetings" />
-              <ScoreOption value="3" label="Attended 3 times in 6 months" field="attendanceToMeetings" />
-              <ScoreOption value="4" label="Attended 4 times in 6 months" field="attendanceToMeetings" />
-              <ScoreOption value="5" label="Attended 5 or more times in 6 months" field="attendanceToMeetings" />
-            </div>
-          </RadioGroup>
-        </div>
+        <FormField
+          control={control}
+          name="attendanceToMeetings"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-semibold text-gray-700 mb-3 block">Attendance to Monthly/Quarterly Meetings (past 6 months)</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} value={field.value}>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="1" id="attendanceToMeetings-1" />
+                      <Label htmlFor="attendanceToMeetings-1" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">1</span> - Attended once in 6 months
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="2" id="attendanceToMeetings-2" />
+                      <Label htmlFor="attendanceToMeetings-2" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">2</span> - Attended twice in 6 months
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="3" id="attendanceToMeetings-3" />
+                      <Label htmlFor="attendanceToMeetings-3" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">3</span> - Attended 3 times in 6 months
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="4" id="attendanceToMeetings-4" />
+                      <Label htmlFor="attendanceToMeetings-4" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">4</span> - Attended 4 times in 6 months
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="5" id="attendanceToMeetings-5" />
+                      <Label htmlFor="attendanceToMeetings-5" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">5</span> - Attended 5 or more times in 6 months
+                      </Label>
+                    </div>
+                  </div>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-        <div>
-          <Label className="text-sm font-semibold text-gray-700 mb-3 block">Program Benefits Received</Label>
-          <RadioGroup value={assessmentData.programBenefitsReceived} onValueChange={(value) => onAssessmentChange('programBenefitsReceived', value)}>
-            <div className="space-y-2">
-              <ScoreOption value="1" label="No benefits received" field="programBenefitsReceived" />
-              <ScoreOption value="2" label="Received only one benefit" field="programBenefitsReceived" />
-              <ScoreOption value="3" label="Received two or more benefits" field="programBenefitsReceived" />
-            </div>
-          </RadioGroup>
-        </div>
+        <FormField
+          control={control}
+          name="programBenefitsReceived"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-semibold text-gray-700 mb-3 block">Program Benefits Received</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} value={field.value}>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="1" id="programBenefitsReceived-1" />
+                      <Label htmlFor="programBenefitsReceived-1" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">1</span> - No benefits received
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="2" id="programBenefitsReceived-2" />
+                      <Label htmlFor="programBenefitsReceived-2" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">2</span> - Received only one benefit
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="3" id="programBenefitsReceived-3" />
+                      <Label htmlFor="programBenefitsReceived-3" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">3</span> - Received two or more benefits
+                      </Label>
+                    </div>
+                  </div>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-        <div>
-          <Label className="text-sm font-semibold text-gray-700 mb-3 block">Years in Program</Label>
-          <RadioGroup value={assessmentData.yearsInProgram} onValueChange={(value) => onAssessmentChange('yearsInProgram', value)}>
-            <div className="space-y-2">
-              <ScoreOption value="1" label="2 years or less" field="yearsInProgram" />
-              <ScoreOption value="2" label="3 to 4 years" field="yearsInProgram" />
-              <ScoreOption value="3" label="5 to 6 years" field="yearsInProgram" />
-              <ScoreOption value="4" label="6 to 7 years" field="yearsInProgram" />
-              <ScoreOption value="5" label="8 years or more" field="yearsInProgram" />
-            </div>
-          </RadioGroup>
-        </div>
+        <FormField
+          control={control}
+          name="yearsInProgram"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-semibold text-gray-700 mb-3 block">Years in Program</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} value={field.value}>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="1" id="yearsInProgram-1" />
+                      <Label htmlFor="yearsInProgram-1" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">1</span> - 2 years or less
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="2" id="yearsInProgram-2" />
+                      <Label htmlFor="yearsInProgram-2" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">2</span> - 3 to 4 years
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="3" id="yearsInProgram-3" />
+                      <Label htmlFor="yearsInProgram-3" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">3</span> - 5 to 6 years
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="4" id="yearsInProgram-4" />
+                      <Label htmlFor="yearsInProgram-4" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">4</span> - 6 to 7 years
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="5" id="yearsInProgram-5" />
+                      <Label htmlFor="yearsInProgram-5" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">5</span> - 8 years or more
+                      </Label>
+                    </div>
+                  </div>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-        <div>
-          <Label className="text-sm font-semibold text-gray-700 mb-3 block">Pastdue Ratio</Label>
-          <RadioGroup value={assessmentData.pastdueRatio} onValueChange={(value) => onAssessmentChange('pastdueRatio', value)}>
-            <div className="space-y-2">
-              <ScoreOption value="1" label="4% or higher" field="pastdueRatio" />
-              <ScoreOption value="2" label="3%" field="pastdueRatio" />
-              <ScoreOption value="3" label="2%" field="pastdueRatio" />
-              <ScoreOption value="4" label="1%" field="pastdueRatio" />
-              <ScoreOption value="5" label="0% (no past due)" field="pastdueRatio" />
-            </div>
-          </RadioGroup>
-        </div>
+        <FormField
+          control={control}
+          name="pastdueRatio"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-semibold text-gray-700 mb-3 block">Pastdue Ratio</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} value={field.value}>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="1" id="pastdueRatio-1" />
+                      <Label htmlFor="pastdueRatio-1" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">1</span> - 4% or higher
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="2" id="pastdueRatio-2" />
+                      <Label htmlFor="pastdueRatio-2" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">2</span> - 3%
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="3" id="pastdueRatio-3" />
+                      <Label htmlFor="pastdueRatio-3" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">3</span> - 2%
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="4" id="pastdueRatio-4" />
+                      <Label htmlFor="pastdueRatio-4" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">4</span> - 1%
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
+                      <RadioGroupItem value="5" id="pastdueRatio-5" />
+                      <Label htmlFor="pastdueRatio-5" className="cursor-pointer flex-1 text-sm">
+                        <span className="font-medium text-blue-600">5</span> - 0% (no past due)
+                      </Label>
+                    </div>
+                  </div>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </div>
     </FormSection>
   )

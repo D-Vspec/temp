@@ -13,12 +13,10 @@ import { BeneficiariesSection } from "@/components/form-sections/beneficiaries-s
 import { CoInsuredSection } from "@/components/form-sections/co-insured-section"
 import { DataPrivacySection } from "@/components/form-sections/data-privacy-section"
 import { BusinessHouseholdSection } from "@/components/form-sections/business-household-section"
-
 import CapacitySection from "@/components/assessment/CapacitySection"
 import ResidencySection from "@/components/assessment/ResidencySection"
 import RecordSection from "@/components/assessment/RecordSection"
 import CenterStatusSection from "@/components/assessment/CenterStatusSection"
-import { AssessmentData, Client } from "@/types/client"
 
 const formSchema = z.object({
   // Personal Information
@@ -123,37 +121,30 @@ const formSchema = z.object({
   repaymentCapacityRate: z.string().optional(),
   maximumLoanEntitlement: z.string().optional(),
   comments: z.string().optional(),
+
+  // Assessment fields
+  primaryLoanRepayment: z.string().optional(),
+  otherLoanRepayment: z.string().optional(),
+  cashFlowAnalysis: z.string().optional(),
+  forcedSavings: z.string().optional(),
+  lengthOfStay: z.string().optional(),
+  ownershipOfResidence: z.string().optional(),
+  barangayRecord: z.string().optional(),
+  familyStatus: z.string().optional(),
+  toiletStatus: z.string().optional(),
+  timeInProgram: z.string().optional(),
+  centerCollectionRecord: z.string().optional(),
+  paymentHistory: z.string().optional(),
+  numberOfLendingGroups: z.string().optional(),
+  numberOfCenterMembers: z.string().optional(),
+  attendanceToMeetings: z.string().optional(),
+  programBenefitsReceived: z.string().optional(),
+  yearsInProgram: z.string().optional(),
+  pastdueRatio: z.string().optional(),
 })
 
 export default function ClientInformationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-    const [assessmentData, setAssessmentData] = useState<AssessmentData>({
-      primaryLoanRepayment: "",
-      otherLoanRepayment: "",
-      cashFlowAnalysis: "",
-      forcedSavings: "",
-      lengthOfStay: "",
-      ownershipOfResidence: "",
-      barangayRecord: "",
-      familyStatus: "",
-      toiletStatus: "",
-      timeInProgram: "",
-      centerCollectionRecord: "",
-      paymentHistory: "",
-      numberOfLendingGroups: "",
-      numberOfCenterMembers: "",
-      attendanceToMeetings: "",
-      programBenefitsReceived: "",
-      yearsInProgram: "",
-      pastdueRatio: "",
-      remarks: "",
-      assessmentDate: new Date().toISOString().split('T')[0]
-    })
-
-
-  const handleAssessmentChange = (field: keyof AssessmentData, value: string) => {
-    setAssessmentData(prev => ({ ...prev, [field]: value }))
-  }
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -314,10 +305,10 @@ export default function ClientInformationForm() {
             <BeneficiariesSection control={form.control} />
             <CoInsuredSection control={form.control} />
             <BusinessHouseholdSection control={form.control} />
-            <CapacitySection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
-            <ResidencySection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
-            <RecordSection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
-            <CenterStatusSection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
+            <CapacitySection control={form.control} />
+            <ResidencySection control={form.control} />
+            <RecordSection control={form.control} />
+            <CenterStatusSection control={form.control} />
             <DataPrivacySection control={form.control} />
 
             {/* Submit Button */}
