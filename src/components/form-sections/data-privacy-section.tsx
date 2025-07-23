@@ -64,19 +64,6 @@ export function DataPrivacySection({ control }: DataPrivacySectionProps) {
             </FormItem>
           )}
         />
-
-        {/* Signature Section */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="text-center">
-            <div className="border-b-2 border-black h-16 mb-2"></div>
-            <p className="font-bold text-sm">NAME OF CLIENT</p>
-            <p className="text-xs">(Signature over Printed Name)</p>
-          </div>
-          <div className="text-center">
-            <div className="border-b-2 border-black h-16 mb-2"></div>
-            <p className="font-bold text-sm">Date</p>
-          </div>
-        </div>
       </CardContent>
     </Card>
   )

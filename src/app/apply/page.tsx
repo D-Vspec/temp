@@ -307,8 +307,8 @@ export default function ClientInformationForm() {
             <BusinessHouseholdSection control={form.control} />
             <CapacitySection control={form.control} />
             <ResidencySection control={form.control} />
-            <RecordSection control={form.control} />
-            <CenterStatusSection control={form.control} />
+            {/* <RecordSection control={form.control} /> */}
+            {/* <CenterStatusSection control={form.control} /> */}
             <DataPrivacySection control={form.control} />
 
             {/* Submit Button */}
