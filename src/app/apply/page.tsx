@@ -213,6 +213,10 @@ export default function ClientInformationForm() {
       if (response.ok) {
         console.log("=== CLIENT INFORMATION FORM SUBMISSION SUCCESS ===")
         console.log(JSON.stringify(formData, null, 2))
+        
+        // Log client data in JSON format
+        console.log("=== CLIENT DATA JSON FORMAT ===")
+        console.log(JSON.stringify(values, null, 2))
 
         // Show success toast
         toast.success("Client information submitted successfully!", {
