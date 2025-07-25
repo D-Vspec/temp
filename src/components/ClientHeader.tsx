@@ -1,5 +1,3 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-
 export default function ClientHeader() {
   return (
     <div className="text-center mb-8 border-2 border-black p-4">

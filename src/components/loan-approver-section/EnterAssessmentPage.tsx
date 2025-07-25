@@ -14,6 +14,10 @@ import ResidencySection from "@/components/assessment/ResidencySection"
 import RecordSection from "@/components/assessment/RecordSection"
 import CenterStatusSection from "@/components/assessment/CenterStatusSection"
 import { AssessmentData, Client } from "@/types/client"
+import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Form } from "@/components/ui/form"
 
 interface EnterAssessmentPageProps {
   clients: Client[]
@@ -23,6 +27,25 @@ interface EnterAssessmentPageProps {
   onClientSelect: (clientId: string) => void
 }
 
+const formSchema = z.object({
+  // selectedClientId: z.string().min(1, "Client ID is required"),
+  // Record Section
+  timeInProgram: z.string().min(1, "Time in Program is required").or(z.number().transform(String)),
+  centerCollectionRecord: z.string().min(1, "Center Collection Record is required").or(z.number().transform(String)),
+  paymentHistory: z.string().min(1, "Payment History is required").or(z.number().transform(String)),
+  numberOfLendingGroups: z.string().min(1, "Number of Lending Groups is required").or(z.number().transform(String)),
+  // Center Status Section
+  numberOfCenterMembers: z.string().min(1, "Number of Center Members is required").or(z.number().transform(String)),
+  attendanceToMeetings: z.string().min(1, "Attendance to Meetings is required").or(z.number().transform(String)),
+  programBenefitsReceived: z.string().min(1, "Program Benefits Received is required").or(z.number().transform(String)),
+  yearsInProgram: z.string().min(1, "Years in Program is required").or(z.number().transform(String)),
+  pastdueRatio: z.string().min(1, "Pastdue Ratio is required").or(z.number().transform(String)),
+  remarks: z.string().optional(),
+  assessmentDate: z.string().optional(),
+  // typeOfForm: z.string().min(1, "Type of form is required"),
+})
+
+
 export default function EnterAssessmentPage({ 
   clients, 
   selectedClientId, 
@@ -31,57 +54,66 @@ export default function EnterAssessmentPage({
   onClientSelect 
 }: EnterAssessmentPageProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const [assessmentData, setAssessmentData] = useState<AssessmentData>({
-    primaryLoanRepayment: "",
-    otherLoanRepayment: "",
-    cashFlowAnalysis: "",
-    forcedSavings: "",
-    lengthOfStay: "",
-    ownershipOfResidence: "",
-    barangayRecord: "",
-    familyStatus: "",
-    toiletStatus: "",
-    timeInProgram: "",
-    centerCollectionRecord: "",
-    paymentHistory: "",
-    numberOfLendingGroups: "",
-    numberOfCenterMembers: "",
-    attendanceToMeetings: "",
-    programBenefitsReceived: "",
-    yearsInProgram: "",
-    pastdueRatio: "",
-    remarks: "",
-    assessmentDate: new Date().toISOString().split('T')[0]
+
+  // Add react-hook-form
+  const form = useForm<any>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      assessmentDate: new Date().toISOString().split('T')[0],
+      remarks: "",
+      // Add other assessment fields as needed
+    },
   })
 
   // Update assessment date when component mounts or client changes
   useEffect(() => {
-    setAssessmentData(prev => ({
-      ...prev,
-      assessmentDate: new Date().toISOString().split('T')[0]
-    }))
-  }, [selectedClientId])
+    form.setValue('assessmentDate', new Date().toISOString().split('T')[0])
+  }, [selectedClientId, form])
 
-  const handleSaveAssessment = async () => {
+  const onSubmit = async (values: any) => {
     if (!selectedClientId) {
       toast.error("Please select a client first")
       return
     }
-
     try {
+      console.log('ho')
       setIsLoading(true)
-      const response = await fetch(`http://localhost:5000/client/${selectedClientId}/assessment`, {
+      // Normalize primaryLoanRepayment and otherLoanRepayment fields
+      const normalizeOptions = (arr: any[]) =>
+        arr.map((v) => typeof v === "string" ? v : v.value === "other" ? { value: "other", comment: v.comment } : v)
+
+      const payload = {
+        clientId: selectedClientId,
+        data: {
+          ...values,
+        }
+      }
+      console.log("=== ASSESSMENT SUBMIT PAYLOAD ===")
+      console.log(JSON.stringify(payload, null, 2))
+      const response = await fetch("http://localhost:5000/process_assessment_data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(assessmentData)
+        body: JSON.stringify(payload)
       })
-
       if (response.ok) {
         toast.success("Assessment saved successfully!")
         console.log("=== ASSESSMENT SAVED ===")
-        console.log(JSON.stringify(assessmentData, null, 2))
+        console.log(JSON.stringify(payload, null, 2))
+        form.reset({
+          assessmentDate: new Date().toISOString().split('T')[0],
+          remarks: "",
+          timeInProgram: "",
+          centerCollectionRecord: "",
+          paymentHistory: "",
+          numberOfLendingGroups: "",
+          numberOfCenterMembers: "",
+          attendanceToMeetings: "",
+          programBenefitsReceived: "",
+          yearsInProgram: "",
+          pastdueRatio: ""
+        })
       } else {
         throw new Error(`Failed to save assessment: ${response.status}`)
       }
@@ -95,33 +127,17 @@ export default function EnterAssessmentPage({
     }
   }
 
-  const handleAssessmentChange = (field: keyof AssessmentData, value: string) => {
-    setAssessmentData(prev => ({ ...prev, [field]: value }))
+  // Update handleAssessmentChange to use form.setValue
+  const handleAssessmentChange = (field: string, value: string) => {
+    form.setValue(field, value)
   }
 
+  // Update handleCancel to reset form
   const handleCancel = () => {
-    // Reset form or navigate back
-    setAssessmentData({
-      primaryLoanRepayment: "",
-      otherLoanRepayment: "",
-      cashFlowAnalysis: "",
-      forcedSavings: "",
-      lengthOfStay: "",
-      ownershipOfResidence: "",
-      barangayRecord: "",
-      familyStatus: "",
-      toiletStatus: "",
-      timeInProgram: "",
-      centerCollectionRecord: "",
-      paymentHistory: "",
-      numberOfLendingGroups: "",
-      numberOfCenterMembers: "",
-      attendanceToMeetings: "",
-      programBenefitsReceived: "",
-      yearsInProgram: "",
-      pastdueRatio: "",
+    form.reset({
+      assessmentDate: new Date().toISOString().split('T')[0],
       remarks: "",
-      assessmentDate: new Date().toISOString().split('T')[0]
+      // Reset other assessment fields as needed
     })
     toast.success("Form reset successfully")
   }
@@ -149,80 +165,82 @@ export default function EnterAssessmentPage({
 
         {/* Assessment Form */}
         {selectedClientId && !isLoading && (
-          <div className="space-y-6">
-            {/* Assessment Header */}
-            <Card className="border-2 border-black">
-              <CardHeader className="bg-red-50">
-                <CardTitle className="text-lg font-bold text-center">CLIENT ASSESSMENT FORM</CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <Label htmlFor="assessmentDate" className="text-sm font-medium">Assessment Date</Label>
-                    <Input
-                      id="assessmentDate"
-                      type="date"
-                      value={assessmentData.assessmentDate}
-                      onChange={(e) => handleAssessmentChange('assessmentDate', e.target.value)}
-                      className="mt-1"
-                    />
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit((values) => onSubmit({ ...values, selectedClientId }))} className="space-y-6">
+              {/* Assessment Header */}
+              <Card className="border-2 border-black">
+                <CardHeader className="bg-red-50">
+                  <CardTitle className="text-lg font-bold text-center">CLIENT ASSESSMENT FORM</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <Label htmlFor="assessmentDate" className="text-sm font-medium">Assessment Date</Label>
+                      <Input
+                        id="assessmentDate"
+                        type="date"
+                        value={form.watch("assessmentDate")}
+                        onChange={(e) => handleAssessmentChange('assessmentDate', e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="selectedClient" className="text-sm font-medium">Selected Client ID</Label>
+                      <Input
+                        id="selectedClient"
+                        value={selectedClientId}
+                        disabled
+                        className="mt-1 bg-gray-50"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <Label htmlFor="selectedClient" className="text-sm font-medium">Selected Client ID</Label>
-                    <Input
-                      id="selectedClient"
-                      value={selectedClientId}
-                      disabled
-                      className="mt-1 bg-gray-50"
-                    />
-                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Assessment Sections */}
+              {/* <CapacitySection control={form.control} />
+              <ResidencySection control={form.control} /> */}
+              <RecordSection control={form.control} />
+              <CenterStatusSection control={form.control} />
+              {/* Additional Remarks */}
+              <FormSection title="ADDITIONAL REMARKS" bgColor="bg-orange-50">
+                <div>
+                  <Label htmlFor="remarks" className="text-sm font-medium text-gray-700 mb-2 block">
+                    Assessment Notes and Comments
+                  </Label>
+                  <Textarea
+                    id="remarks"
+                    placeholder="Enter any additional observations, notes, or comments about the client assessment..."
+                    value={form.watch("remarks")}
+                    onChange={(e) => handleAssessmentChange('remarks', e.target.value)}
+                    rows={4}
+                    className="w-full"
+                  />
                 </div>
-              </CardContent>
-            </Card>
+              </FormSection>
 
-            {/* Assessment Sections */}
-            <CapacitySection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
-            <ResidencySection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
-            <RecordSection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
-            <CenterStatusSection assessmentData={assessmentData} onAssessmentChange={handleAssessmentChange} />
-
-            {/* Additional Remarks */}
-            <FormSection title="ADDITIONAL REMARKS" bgColor="bg-orange-50">
-              <div>
-                <Label htmlFor="remarks" className="text-sm font-medium text-gray-700 mb-2 block">
-                  Assessment Notes and Comments
-                </Label>
-                <Textarea
-                  id="remarks"
-                  placeholder="Enter any additional observations, notes, or comments about the client assessment..."
-                  value={assessmentData.remarks}
-                  onChange={(e) => handleAssessmentChange('remarks', e.target.value)}
-                  rows={4}
-                  className="w-full"
-                />
+              {/* Action Buttons */}
+              <div className="flex justify-center space-x-4">
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg font-semibold"
+                >
+                  <Save className="w-5 h-5 mr-2" />
+                  Save Assessment
+                </Button>
+                <Button
+                  type="button"
+                  onClick={handleCancel}
+                  variant="outline"
+                  className="border-2 border-gray-400 px-8 py-3 text-lg font-semibold"
+                >
+                  <X className="w-5 h-5 mr-2" />
+                  Reset Form
+                </Button>
               </div>
-            </FormSection>
-
-            {/* Action Buttons */}
-            <div className="flex justify-center space-x-4">
-              <Button
-                onClick={handleSaveAssessment}
-                disabled={isLoading}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg font-semibold"
-              >
-                <Save className="w-5 h-5 mr-2" />
-                Save Assessment
-              </Button>
-              <Button
-                onClick={handleCancel}
-                variant="outline"
-                className="border-2 border-gray-400 px-8 py-3 text-lg font-semibold"
-              >
-                <X className="w-5 h-5 mr-2" />
-                Reset Form
-              </Button>
-            </div>
-          </div>
+            </form>
+          </Form>
         )}
 
         {/* No Client Selected State */}

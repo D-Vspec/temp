@@ -15,8 +15,6 @@ import { DataPrivacySection } from "@/components/form-sections/data-privacy-sect
 import { BusinessHouseholdSection } from "@/components/form-sections/business-household-section"
 import CapacitySection from "@/components/assessment/CapacitySection"
 import ResidencySection from "@/components/assessment/ResidencySection"
-import RecordSection from "@/components/assessment/RecordSection"
-import CenterStatusSection from "@/components/assessment/CenterStatusSection"
 
 const formSchema = z.object({
   // Personal Information

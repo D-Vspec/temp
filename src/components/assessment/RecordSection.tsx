@@ -24,31 +24,31 @@ export default function RecordSection({ control }: RecordSectionProps) {
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="timeInProgram-1" />
                       <Label htmlFor="timeInProgram-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - 2nd cycle or earlier
+                        2nd cycle or earlier
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="timeInProgram-2" />
                       <Label htmlFor="timeInProgram-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - 3rd to 4th cycle
+                        3rd to 4th cycle
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="timeInProgram-3" />
                       <Label htmlFor="timeInProgram-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - 5th to 6th cycle
+                        5th to 6th cycle
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="timeInProgram-4" />
                       <Label htmlFor="timeInProgram-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - 7th to 8th cycle
+                        7th to 8th cycle
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="timeInProgram-5" />
                       <Label htmlFor="timeInProgram-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - 9th cycle and beyond
+                        9th cycle and beyond
                       </Label>
                     </div>
                   </div>
@@ -71,31 +71,31 @@ export default function RecordSection({ control }: RecordSectionProps) {
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="centerCollectionRecord-1" />
                       <Label htmlFor="centerCollectionRecord-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - Weekly payments not completed
+                        Weekly payments not completed
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="centerCollectionRecord-2" />
                       <Label htmlFor="centerCollectionRecord-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - Payments incomplete on due date but completed within the week
+                        Payments incomplete on due date but completed within the week
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="centerCollectionRecord-3" />
                       <Label htmlFor="centerCollectionRecord-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - Payments completed but more than 2 hours late or after AD follow-up
+                        Payments completed but more than 2 hours late or after AD follow-up
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="centerCollectionRecord-4" />
                       <Label htmlFor="centerCollectionRecord-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - Payments completed on time
+                        Payments completed on time
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="centerCollectionRecord-5" />
                       <Label htmlFor="centerCollectionRecord-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - Payments completed within schedule promptly
+                        Payments completed within schedule promptly
                       </Label>
                     </div>
                   </div>
@@ -118,31 +118,31 @@ export default function RecordSection({ control }: RecordSectionProps) {
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="paymentHistory-1" />
                       <Label htmlFor="paymentHistory-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - No weekly payments and not covered by other members
+                        No weekly payments and not covered by other members
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="paymentHistory-2" />
                       <Label htmlFor="paymentHistory-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - 1–2 red marks in passbook
+                        1–2 red marks in passbook
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="paymentHistory-3" />
                       <Label htmlFor="paymentHistory-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - Covered by center within time
+                        Covered by center within time
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="paymentHistory-4" />
                       <Label htmlFor="paymentHistory-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - Weekly contributions are up to date
+                        Weekly contributions are up to date
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="paymentHistory-5" />
                       <Label htmlFor="paymentHistory-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - Personally pays on time
+                        Personally pays on time
                       </Label>
                     </div>
                   </div>
@@ -165,31 +165,31 @@ export default function RecordSection({ control }: RecordSectionProps) {
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="numberOfLendingGroups-1" />
                       <Label htmlFor="numberOfLendingGroups-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - Member of more than 4 loan groups
+                        Member of more than 4 loan groups
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="numberOfLendingGroups-2" />
                       <Label htmlFor="numberOfLendingGroups-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - No experience with any loan group
+                        No experience with any loan group
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="numberOfLendingGroups-3" />
                       <Label htmlFor="numberOfLendingGroups-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - Member of 3 to 4 loan groups
+                        Member of 3 to 4 loan groups
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="numberOfLendingGroups-4" />
                       <Label htmlFor="numberOfLendingGroups-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - Spouse is a member of another loan group
+                        Spouse is a member of another loan group
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="numberOfLendingGroups-5" />
                       <Label htmlFor="numberOfLendingGroups-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - Member of 1 to 2 loan groups
+                        Member of 1 to 2 loan groups
                       </Label>
                     </div>
                   </div>

@@ -24,31 +24,31 @@ export default function CenterStatusSection({ control }: CenterStatusSectionProp
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="numberOfCenterMembers-1" />
                       <Label htmlFor="numberOfCenterMembers-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - 5 to 10 members
+                        5 to 10 members
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="numberOfCenterMembers-2" />
                       <Label htmlFor="numberOfCenterMembers-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - 11 to 15 members
+                        11 to 15 members
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="numberOfCenterMembers-3" />
                       <Label htmlFor="numberOfCenterMembers-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - 26 or more members
+                        26 or more members
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="numberOfCenterMembers-4" />
                       <Label htmlFor="numberOfCenterMembers-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - 16 to 20 members
+                        16 to 20 members
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="numberOfCenterMembers-5" />
                       <Label htmlFor="numberOfCenterMembers-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - 21 to 25 members
+                        21 to 25 members
                       </Label>
                     </div>
                   </div>
@@ -71,31 +71,31 @@ export default function CenterStatusSection({ control }: CenterStatusSectionProp
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="attendanceToMeetings-1" />
                       <Label htmlFor="attendanceToMeetings-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - Attended once in 6 months
+                        Attended once in 6 months
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="attendanceToMeetings-2" />
                       <Label htmlFor="attendanceToMeetings-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - Attended twice in 6 months
+                        Attended twice in 6 months
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="attendanceToMeetings-3" />
                       <Label htmlFor="attendanceToMeetings-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - Attended 3 times in 6 months
+                        Attended 3 times in 6 months
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="attendanceToMeetings-4" />
                       <Label htmlFor="attendanceToMeetings-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - Attended 4 times in 6 months
+                        Attended 4 times in 6 months
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="attendanceToMeetings-5" />
                       <Label htmlFor="attendanceToMeetings-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - Attended 5 or more times in 6 months
+                        Attended 5 or more times in 6 months
                       </Label>
                     </div>
                   </div>
@@ -118,19 +118,19 @@ export default function CenterStatusSection({ control }: CenterStatusSectionProp
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="programBenefitsReceived-1" />
                       <Label htmlFor="programBenefitsReceived-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - No benefits received
+                        No benefits received
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="programBenefitsReceived-2" />
                       <Label htmlFor="programBenefitsReceived-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - Received only one benefit
+                        Received only one benefit
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="programBenefitsReceived-3" />
                       <Label htmlFor="programBenefitsReceived-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - Received two or more benefits
+                        Received two or more benefits
                       </Label>
                     </div>
                   </div>
@@ -153,31 +153,31 @@ export default function CenterStatusSection({ control }: CenterStatusSectionProp
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="yearsInProgram-1" />
                       <Label htmlFor="yearsInProgram-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - 2 years or less
+                        2 years or less
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="yearsInProgram-2" />
                       <Label htmlFor="yearsInProgram-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - 3 to 4 years
+                        3 to 4 years
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="yearsInProgram-3" />
                       <Label htmlFor="yearsInProgram-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - 5 to 6 years
+                        5 to 6 years
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="yearsInProgram-4" />
                       <Label htmlFor="yearsInProgram-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - 6 to 7 years
+                        6 to 7 years
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="yearsInProgram-5" />
                       <Label htmlFor="yearsInProgram-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - 8 years or more
+                        8 years or more
                       </Label>
                     </div>
                   </div>
@@ -200,31 +200,31 @@ export default function CenterStatusSection({ control }: CenterStatusSectionProp
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="1" id="pastdueRatio-1" />
                       <Label htmlFor="pastdueRatio-1" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">1</span> - 4% or higher
+                        4% or higher
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="2" id="pastdueRatio-2" />
                       <Label htmlFor="pastdueRatio-2" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">2</span> - 3%
+                        3%
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="3" id="pastdueRatio-3" />
                       <Label htmlFor="pastdueRatio-3" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">3</span> - 2%
+                        2%
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="4" id="pastdueRatio-4" />
                       <Label htmlFor="pastdueRatio-4" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">4</span> - 1%
+                        1%
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 p-2 border rounded hover:bg-gray-50">
                       <RadioGroupItem value="5" id="pastdueRatio-5" />
                       <Label htmlFor="pastdueRatio-5" className="cursor-pointer flex-1 text-sm">
-                        <span className="font-medium text-blue-600">5</span> - 0% (no past due)
+                        0% (no past due)
                       </Label>
                     </div>
                   </div>
